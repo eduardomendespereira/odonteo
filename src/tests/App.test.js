@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import App from '../App.js';
 
 describe('Test sanity of routes', () => {
@@ -18,23 +18,59 @@ describe('Test sanity of routes', () => {
         expect(loginPage).toBeInTheDocument();
     });
 
-    // it('Should render main page', async () => {
-    //     window.history.pushState({}, 'Main page', '/')
+    it('should get main page', async () => {
+        render(<App />);
+        const passwordInput = screen.getByTestId('password-id');
+        const emailInput = screen.getByTestId('email-id');
 
-    //     render(<App/>)
-    
-    //     const mainPage = screen.getByTestId('main-test-id');
+        const loginButton = screen.getByTestId('login-button-id');
 
-    //     expect(mainPage).toBeInTheDocument();
-    // });
+        fireEvent.change(passwordInput, { target: {
+            value: 'Password1!23'
+        }});
+     
+        fireEvent.change(emailInput, { target: {
+            value: 'userFake@gmail.com'
+        }});
 
-    // it('Should render statement page', async () => {
-    //     window.history.pushState({}, 'Statement page', '/statement')
+        expect(emailInput).toHaveValue('userFake@gmail.com');
+        expect(passwordInput).toHaveValue('Password1!23');
 
-    //     render(<App/>)
-    //     testeA();
-    //     const statementPage = screen.getByTestId('statement-test-id');
+        fireEvent.click(loginButton);
 
-    //     expect(mainPage).toBeInTheDocument();
-    // });
+        const mainPage = screen.getByTestId('main-test-id');
+
+        expect(mainPage).toBeInTheDocument();
+    });
+
+    it('should get statement page', async () => {
+        window.history.pushState({}, 'Login page', '/login')
+        render(<App />);
+        const passwordInput = screen.getByTestId('password-id');
+        const emailInput = screen.getByTestId('email-id');
+
+        const loginButton = screen.getByTestId('login-button-id');
+
+        fireEvent.change(passwordInput, { target: {
+            value: 'Password1!23'
+        }});
+     
+        fireEvent.change(emailInput, { target: {
+            value: 'userFake@gmail.com'
+        }});
+
+        expect(emailInput).toHaveValue('userFake@gmail.com');
+        expect(passwordInput).toHaveValue('Password1!23');
+
+        fireEvent.click(loginButton);
+
+        const statementButton = screen.getByTestId('statement-button-id');
+
+        fireEvent.click(statementButton);
+
+        const statementPage = screen.getByTestId('statement-test-id');
+       
+
+        expect(statementPage).toBeInTheDocument();
+    });
 });

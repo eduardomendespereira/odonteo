@@ -156,6 +156,7 @@ function Main() {
       <Button
         id='go-to-statement-button'
         onClickFunction={() => navigate('/statement')}
+        testId='statement-button-id'
       >
         Ver extrato
       </Button>
