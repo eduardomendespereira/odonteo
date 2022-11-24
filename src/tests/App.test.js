@@ -22,7 +22,7 @@ describe('Test sanity of routes', () => {
     //     window.history.pushState({}, 'Main page', '/')
 
     //     render(<App/>)
-
+    
     //     const mainPage = screen.getByTestId('main-test-id');
 
     //     expect(mainPage).toBeInTheDocument();
@@ -32,7 +32,7 @@ describe('Test sanity of routes', () => {
     //     window.history.pushState({}, 'Statement page', '/statement')
 
     //     render(<App/>)
-
+    //     testeA();
     //     const statementPage = screen.getByTestId('statement-test-id');
 
     //     expect(mainPage).toBeInTheDocument();

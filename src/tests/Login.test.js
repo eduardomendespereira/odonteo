@@ -3,12 +3,14 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { BrowserRouter, Routes } from 'react-router-dom';
 import App from '../App.js';
 
-
+const user = {email: 'eduardo@gmail.com', password: 'Abc!123'};
+const token = 'MYtOKEN454';
+const message = 'Login efetuado com sucesso!';
 
 describe('Test login page', () => {
     beforeEach(() => {
         global.fetch = jest.fn(() => Promise.resolve({
-            json: () => Promise.resolve({})
+            json: () => Promise.resolve({user, message, token})
         }))
     })
 
