@@ -1,15 +1,16 @@
 
 import { fireEvent, render, screen } from '@testing-library/react';
 import { BrowserRouter, Routes } from 'react-router-dom';
-// import Login from '../pages/Login.js';
 import App from '../App.js';
 
+
+
 describe('Test login page', () => {
-    // beforeEach(() => {
-    //     global.fetch = jest.fn(() => Promise.resolve({
-    //         json: () => Promise.resolve({})
-    //     }))
-    // })
+    beforeEach(() => {
+        global.fetch = jest.fn(() => Promise.resolve({
+            json: () => Promise.resolve({})
+        }))
+    })
 
     it('should get email input value', async () => {
         render(<App />);
