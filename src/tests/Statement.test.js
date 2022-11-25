@@ -39,10 +39,13 @@ describe('Tests statement page', () => {
         const endDataInput = screen.getByTestId('end-date-id');
     
         fireEvent.change(initialDataInput, { target: {
-            value: new Date('11/11/2011')
+            value: '2022-06-06' 
         }});
         fireEvent.change(endDataInput, { target: {
-            value: new Date('11/11/2011')
+            value: '2022-07-07' 
         }});
+
+        expect(initialDataInput).toHaveValue('2022-06-06' );
+        expect(endDataInput).toHaveValue('2022-07-07' );
     });
 });
