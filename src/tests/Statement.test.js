@@ -1,9 +1,9 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import App from '../App.js';
 
-describe('Tests main page', () => {
+describe('Tests statement page', () => {
 
-    it('should check inputs main', async () => {
+    it('should check inputs statement', async () => {
         render(<App />);
         const passwordInput = screen.getByTestId('password-id');
         const emailInput = screen.getByTestId('email-id');
@@ -26,24 +26,23 @@ describe('Tests main page', () => {
     
         expect(mainPage).toBeInTheDocument();
 
-        const amountInput = screen.getByTestId('amount-id');
-        const installmentsInput = screen.getByTestId('installments-id');
-        const billingInput = screen.getByTestId('billing-day-id');
-        const firstInstallmentDateInput = screen.getByTestId('first-installment-date-id');
+        const statementButton = screen.getByTestId('statement-button-id');
 
-        fireEvent.change(amountInput, { target: {
-            value: 3500
-        }});
-        fireEvent.change(installmentsInput, { target: {
-            value: 2
-        }});
-        fireEvent.change(billingInput, { target: {
-            value: 15
-        }});
+        fireEvent.click(statementButton);
+
+        const statementPage = screen.getByTestId('statement-test-id');
+       
+
+        expect(statementPage).toBeInTheDocument();
+
+        const initialDataInput = screen.getByTestId('initial-date-id');
+        const endDataInput = screen.getByTestId('end-date-id');
     
-        expect(amountInput).toHaveValue(3500);
-        expect(installmentsInput).toHaveValue(2);
-        expect(billingInput).toHaveValue(15);
-    
+        fireEvent.change(initialDataInput, { target: {
+            value: new Date('11/11/2011')
+        }});
+        fireEvent.change(endDataInput, { target: {
+            value: new Date('11/11/2011')
+        }});
     });
 });
