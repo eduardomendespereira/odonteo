@@ -153,6 +153,7 @@ function Main() {
           id='register-button'
           onClickFunction={register}
           addClassName='form-button'
+          testId='register-button-id'
         >
           Registrar cobrança
         </Button>

@@ -40,10 +40,20 @@ describe('Tests main page', () => {
         fireEvent.change(billingInput, { target: {
             value: 15
         }});
-    
+        fireEvent.change(firstInstallmentDateInput, { target: {
+            value: '2022-07-07' 
+        }});
+        
         expect(amountInput).toHaveValue(3500);
         expect(installmentsInput).toHaveValue(2);
         expect(billingInput).toHaveValue(15);
+        expect(firstInstallmentDateInput).toHaveValue('2022-07-07');
+
+        const registerButton = screen.getByTestId('register-button-id');
+
+        fireEvent.click(registerButton);
+
+        expect(mainPage).toBeInTheDocument('Informações em formato incorreto.');
     
     });
 });
